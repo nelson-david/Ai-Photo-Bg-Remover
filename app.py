@@ -25,23 +25,36 @@ def save_picture(form_picture):
 	return picture_fn
 
 def get_response_image(image_path):
-    pil_img = Image.open(app.root_path + '\\static\\img\\' + image_path, mode='r') # reads the PIL image
+    pil_img = Image.open(app.root_path + '/static/img/' + image_path, mode='r') # reads the PIL image
     byte_arr = io.BytesIO()
     pil_img.save(byte_arr, format='PNG') # convert the PIL image to byte array
     encoded_img = encodebytes(byte_arr.getvalue()).decode('ascii') # encode as base64
     return encoded_img
 
+def process_image(image):
+	global generated_name
+	response = requests.post(
+		'https://api.remove.bg/v1.0/removebg',
+		files={'image_file': open(app.root_path+'\\static\\img\\'+image, 'rb')},
+		data={'size': 'auto'},
+		headers={'X-Api-Key': 'sNjPvyFeaabCMqTxv5xN8i2K'},
+	)
+	if response.status_code == requests.codes.ok:
+		generated_name = secrets.token_hex(3)
+		with open(app.root_path+'\\static\\img\\'+generated_name+'.png', 'wb') as out:
+			out.write(response.content)
+		return generated_name+".png"
+	else:
+		print("Error:", response.status_code, response.text)
+
 
 @app.route("/", methods=["POST"])
 def send():
     picture_file = save_picture(request.files.get('file'))
-    encoded_img = get_response_image(picture_file)
-    return jsonify({'message':encoded_img, 'filename':picture_file})
+    new_image = process_image(picture_file)
+    encoded_img = get_response_image(new_image)
+    return jsonify({'message':encoded_img, 'filename':generated_name+".png"})
 
-@app.route("/test")
-def check():
-	return "Hello World Testing App"
 
-# 
-# if __name__ == "__main__":
-#     app.run(debug=True, port=400)
+if __name__ == "__main__":
+    app.run(debug=True, port=400)
