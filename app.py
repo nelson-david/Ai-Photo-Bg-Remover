@@ -38,6 +38,10 @@ def send():
     encoded_img = get_response_image(picture_file)
     return jsonify({'message':encoded_img, 'filename':picture_file})
 
+@app.route("/test")
+def check():
+	return "Hello World Testing App"
 
+# 
 # if __name__ == "__main__":
 #     app.run(debug=True, port=400)
