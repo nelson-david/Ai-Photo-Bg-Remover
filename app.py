@@ -24,11 +24,8 @@ def save_picture(form_picture):
 	i.save(picture_path)
 	return picture_fn
 
-""" I got this code from stack overflow, i don't really know how to explain this
-but i know it converts the image passed to base64 """
-
 def get_response_image(image_path):
-    pil_img = Image.open(app.root_path + 'static/img/' + image_path, mode='r') # reads the PIL image
+    pil_img = Image.open(app.root_path + '\\static\\img\\' + image_path, mode='r') # reads the PIL image
     byte_arr = io.BytesIO()
     pil_img.save(byte_arr, format='PNG') # convert the PIL image to byte array
     encoded_img = encodebytes(byte_arr.getvalue()).decode('ascii') # encode as base64
