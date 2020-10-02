@@ -35,7 +35,7 @@ def get_response_image(image_path):
     return encoded_img
 
 
-@app.route("/", methods=["POST", "GET"])
+@app.route("/", methods=["POST"])
 def send():
     picture_file = save_picture(request.files.get('file'))
     encoded_img = get_response_image(picture_file)
