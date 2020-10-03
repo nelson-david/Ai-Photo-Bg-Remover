@@ -19,7 +19,7 @@ const Body = () => {
     var form_data = new FormData();
 
     form_data.append('file', e.target.files[0]);
-    const url = 'https://remove-bg-api.herokuapp.com/';
+    const url = 'http://localhost:400';
     axios.post(url, form_data, {
       headers: {
         'content-type': false,
@@ -33,7 +33,7 @@ const Body = () => {
   }
 
   const downloadPhoto = () => {
-		fetch(`https://remove-bg-api.herokuapp.com/static/img/${filename}`)
+		fetch(`http://localhost:400/static/img/${filename}`)
 			.then(response => {
 				response.blob().then(blob => {
 					let url = window.URL.createObjectURL(blob);
