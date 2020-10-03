@@ -50,11 +50,13 @@ def process_image(image):
 
 @app.route("/", methods=["POST"])
 def send():
-    picture_file = save_picture(request.files.get('file'))
-    new_image = process_image(picture_file)
-    encoded_img = get_response_image(new_image)
-    return jsonify({'message':encoded_img, 'filename':generated_name+".png"})
+	if request.method == "POST":
+	    picture_file = save_picture(request.files.get('file'))
+	    new_image = process_image(picture_file)
+	    encoded_img = get_response_image(new_image)
+	    return jsonify({'message':encoded_img, 'filename':generated_name+".png"})
+	else:
+		return "Hello World Application"
 
-
-if __name__ == "__main__":
-    app.run(debug=True, port=400)
+# if __name__ == "__main__":
+#     app.run(debug=True, port=400)
