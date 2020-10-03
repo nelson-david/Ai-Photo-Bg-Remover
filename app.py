@@ -41,7 +41,7 @@ def process_image(image):
 	)
 	if response.status_code == requests.codes.ok:
 		generated_name = secrets.token_hex(3)
-		with open(app.root_path+'\\static\\img\\'+generated_name+'.png', 'wb') as out:
+		with open(app.root_path+'/static/img/'+generated_name+'.png', 'wb') as out:
 			out.write(response.content)
 		return generated_name+".png"
 	else:
