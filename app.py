@@ -37,7 +37,7 @@ def process_image(image):
 		'https://api.remove.bg/v1.0/removebg',
 		files={'image_file': open(app.root_path+'/static/img/'+image, 'rb')},
 		data={'size': 'auto'},
-		headers={'X-Api-Key': 'sNjPvyFeaabCMqTxv5xN8i2K'},
+		headers={'X-Api-Key': 'YOUR_API_KEY_HERE'},
 	)
 	if response.status_code == requests.codes.ok:
 		generated_name = secrets.token_hex(3)
