@@ -48,7 +48,7 @@ def process_image(image):
 		print("Error:", response.status_code, response.text)
 
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["POST", "GET"])
 def send():
 	if request.method == "POST":
 	    picture_file = save_picture(request.files.get('file'))
