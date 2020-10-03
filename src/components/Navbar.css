@@ -1,0 +1,36 @@
+.nav-item{
+  margin-right: 60px;
+}
+
+.navbar{
+  background: #000010 !important;
+  box-shadow: none;
+}
+
+.nav_link{
+  margin-right: 50px;
+}
+
+a{
+  color: aliceblue;
+  font-size: 18px;
+  transition: 0.3s all ease-in-out;
+}
+
+.nav-item a:hover{
+  color: lavenderblush;
+}
+
+.navbar-brand{
+  font-size: 23px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.navbar-brand .span1{
+  color: aliceblue;
+}
+
+.navbar-brand .span2{
+  color: #380474;
+}
