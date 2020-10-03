@@ -35,7 +35,7 @@ def process_image(image):
 	global generated_name
 	response = requests.post(
 		'https://api.remove.bg/v1.0/removebg',
-		files={'image_file': open(app.root_path+'\\static\\img\\'+image, 'rb')},
+		files={'image_file': open(app.root_path+'/static/img/'+image, 'rb')},
 		data={'size': 'auto'},
 		headers={'X-Api-Key': 'sNjPvyFeaabCMqTxv5xN8i2K'},
 	)
